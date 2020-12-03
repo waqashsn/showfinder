@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Counter from './App';
+import App from './App';
+import Show from './components/Show'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter />
+    <App keyword="game thrones"/>
   </React.StrictMode>,
   document.getElementById('root')
 );

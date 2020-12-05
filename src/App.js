@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   handleSearch(searchKeyword) {
-    const apiUrl = 'http://api.tvmaze.com/search/shows?q=' + encodeURI(searchKeyword);
+    const apiUrl = 'https://api.tvmaze.com/search/shows?q=' + encodeURI(searchKeyword);
     fetch(apiUrl)
     .then((response) => response.json())
     .then((searchResults) => {

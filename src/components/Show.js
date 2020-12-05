@@ -1,36 +1,41 @@
 // import React from 'react';
 
 const Show = (props) => {
+    console.log(props.show)
     return (
+        <div className="flex_container__item">
             <div className="card">
+                {/* <p>{props.show.name}</p> */}
                 <div className="card_left">
-                    <img src={this.props.image.medium} alt={this.props.title} />
+                    {props.show.image ? <img src={props.show.image.medium} alt={props.show.name} /> : <span></span>}
+                    
                 </div>
                 <div className="card_right">
-                    <h1>{this.props.title}</h1>
+                    <h1>{props.show.name}</h1>
                     <div className="card_right__details">
                         <ul>
-                            {this.props.genres.map((genre)=> <li>{genre}</li>)}
+                            {props.show.genres.map((genre)=> <li>{genre}</li>)}
                         </ul>
                         <div className="card_right__extradetails">
                             <ul>
                                 <li>
-                                    Premiered: {this.props.premiered}
+                                    Premiered: {props.show.premiered}
                                 </li>
                                 <li>
-                                    Status: {this.props.status}
+                                    Status: {props.show.status}
                                 </li>
                             </ul>
 
                         </div>
                         
                         <div className="card_right__summary">
-                            <p>{this.props.summaryTrimmed}</p>
+                            { props.show.summary ? <p>{props.show.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")} ...</p> : <p>No summary available.</p>}
                         </div>
                         
                     </div>
                 </div>
             </div>
+        </div>
     )
 }
 

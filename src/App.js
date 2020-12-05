@@ -1,53 +1,82 @@
 import React from 'react';
+import Search from './components/Search';
 import Show from './components/Show';
+import SearchResults from './components/SearchResults';
 
 class App extends React.Component {
   constructor(props){
     super(props);
+    this.handleSearch = this.handleSearch.bind(this);
     this.state = {
-      keyword: this.props.keyword,
+      keyword: undefined,
       shows: [],
       error: undefined
       
     }
   }
 
-  componentDidMount() {
-    const apiUrl = 'http://api.tvmaze.com/search/shows?q=' + encodeURI(this.props.keyword);
+  handleSearch(searchKeyword) {
+    const apiUrl = 'http://api.tvmaze.com/search/shows?q=' + encodeURI(searchKeyword);
     fetch(apiUrl)
-    .then((response )=> response.json())
-    .then((searchResults) =>  {
+    .then((response) => response.json())
+    .then((searchResults) => {
       if(searchResults.length > 0){
+        console.log("Keyword: ", searchKeyword);
+        console.log(searchResults);
         this.setState(() => {
-            console.log(encodeURI(this.props.keyword));
-            return {
+          return {
+              keyword: searchKeyword,
               shows: searchResults
             }
         })
-
-      } else {
-        this.setState(() => {
-          return {
-            error: "No movies found with that keyword"
-          }
-        })
       }
-        
-    }); 
+    }) 
   }
 
+
+  // componentDidMount() {
+  //   const apiUrl = 'http://api.tvmaze.com/search/shows?q=' + encodeURI(this.state.keyword);
+  //   fetch(apiUrl)
+  //   .then((response )=> response.json())
+  //   .then((searchResults) =>  {
+  //     if(searchResults.length > 0){
+  //       this.setState(() => {
+  //           console.log("KEYWORD: ", encodeURI(this.state.keyword));
+  //           console.log(searchResults);
+  //           return {
+  //             shows: searchResults
+  //           }
+  //       })
+
+  //     } else {
+  //       this.setState(() => {
+  //         return {
+  //           error: "No movies found with that keyword"
+  //         }
+  //       })
+  //     }
+        
+  //   }); 
+  // }
+
   render() {
-    if (this.state.error) {
-      return (
-        <p>Error: No movies found</p>
-      )
-    } else {
-      return (
-        <div>
-          {this.state.shows.length > 0 && this.state.shows.map((showObj) => <p>{showObj.show.name}</p>)}
-        </div>
-      );
-    }
+    return (
+      <div>
+        <Search handleSearch={this.handleSearch} />
+        {this.state.shows.length > 0 ? <SearchResults searchResults={this.state.shows} /> : <p>No</p>}
+      </div>
+    )
+    // if (this.state.error) {
+    //   return (
+    //     <p>Error: No movies found</p>
+    //   )
+    // } else {
+    //   return (
+    //     <div>
+    //       {this.state.shows.length > 0 && this.state.shows.map((showObj) => <p>{showObj.show.name}</p>)}
+    //     </div>
+    //   );
+    // }
   }
 
 }

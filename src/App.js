@@ -2,15 +2,19 @@ import React from 'react';
 import Search from './components/Search';
 import Show from './components/Show';
 import SearchResults from './components/SearchResults';
+import ShowModal from './components/ShowModal';
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleDetails = this.handleDetails.bind(this);
+    this.handleCloseDetails = this.handleCloseDetails.bind(this);
     this.state = {
       keyword: undefined,
       shows: [],
-      error: undefined
+      error: undefined,
+      showmodal: undefined
       
     }
   }
@@ -31,6 +35,25 @@ class App extends React.Component {
         })
       }
     }) 
+  }
+
+  handleDetails(showdata){
+    if(!!showdata){
+      this.setState(()=> {
+        return {
+          showmodal: showdata
+        }
+      })
+    }
+
+  }
+
+  handleCloseDetails(){
+    this.setState(()=>{
+      return {
+        showmodal: undefined
+      }
+    })
   }
 
 
@@ -63,7 +86,8 @@ class App extends React.Component {
     return (
       <div>
         <Search handleSearch={this.handleSearch} />
-        {this.state.shows.length > 0 ? <SearchResults searchResults={this.state.shows} /> : <p>No</p>}
+        {this.state.shows.length > 0 ? <SearchResults searchResults={this.state.shows} handleDetails={this.handleDetails} /> : <p>No</p>}
+        <ShowModal ShowModal={this.state.showmodal} handleCloseDetails={this.handleCloseDetails} />
       </div>
     )
     // if (this.state.error) {

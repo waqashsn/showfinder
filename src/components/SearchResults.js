@@ -6,7 +6,7 @@ const SearchResults = (props) => {
             {
                 props.searchResults.map((result, index) => {
                     {/* return <p>{result.show.name}</p> */}
-                    return <Show key={index} show={result.show} />
+                    return <Show key={index} show={result.show} handleDetails={props.handleDetails} handleCloseDetails={props.handleCloseDetails} />
                 })
             }
         </div>

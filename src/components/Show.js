@@ -1,43 +1,102 @@
-// import React from 'react';
+import React from 'react';
 
-const Show = (props) => {
-    console.log(props.show)
-    return (
-        <div className="flex_container__item">
+class Show extends React.Component{
+    
+    constructor(props){
+        super(props);
+        this.handleDetailsModal = this.handleDetailsModal.bind(this);
+    }
+
+    handleDetailsModal(e){
+        e.preventDefault();
+        this.props.handleDetails(this.props.show)
+    }
+    
+    render(){
+        return (
+        <div onClick={this.handleDetailsModal} className="flex_container__item">
             <div className="card">
                 {/* <p>{props.show.name}</p> */}
                 <div className="card_left">
-                    {props.show.image ? <img src={props.show.image.medium} alt={props.show.name} /> : <span></span>}
+                    {this.props.show.image ? <img src={this.props.show.image.medium} alt={this.props.show.name} /> : <span></span>}
                     
                 </div>
                 <div className="card_right">
-                    <h1>{props.show.name}</h1>
+                    <h1>{this.props.show.name}</h1>
                     <div className="card_right__details">
                         <ul>
-                            {props.show.genres.map((genre)=> <li>{genre}</li>)}
+                            {this.props.show.genres.map((genre)=> <li>{genre}</li>)}
                         </ul>
                         <div className="card_right__extradetails">
                             <ul>
                                 <li>
-                                    Premiered: {props.show.premiered}
+                                    Premiered: {this.props.show.premiered}
                                 </li>
                                 <li>
-                                    Status: {props.show.status}
+                                    Status: {this.props.show.status}
                                 </li>
                             </ul>
 
                         </div>
                         
                         <div className="card_right__summary">
-                            { props.show.summary ? <p>{props.show.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")} ...</p> : <p>No summary available.</p>}
+                            { this.props.show.summary ? <p>{this.props.show.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")} ...</p> : <p>No summary available.</p>}
+                            <a onClick={this.handleDetailsModal}>Details</a>
                         </div>
+                        {/* <div className="card_right__button">
+                            <a>Details</a>
+                        </div> */}
                         
                     </div>
                 </div>
             </div>
         </div>
     )
+    }
 }
+
+// const Show = (props) => {
+//     console.log(props.show)
+//     return (
+//         <div className="flex_container__item">
+//             <div className="card">
+//                 {/* <p>{props.show.name}</p> */}
+//                 <div className="card_left">
+//                     {props.show.image ? <img src={props.show.image.medium} alt={props.show.name} /> : <span></span>}
+                    
+//                 </div>
+//                 <div className="card_right">
+//                     <h1>{props.show.name}</h1>
+//                     <div className="card_right__details">
+//                         <ul>
+//                             {props.show.genres.map((genre)=> <li>{genre}</li>)}
+//                         </ul>
+//                         <div className="card_right__extradetails">
+//                             <ul>
+//                                 <li>
+//                                     Premiered: {props.show.premiered}
+//                                 </li>
+//                                 <li>
+//                                     Status: {props.show.status}
+//                                 </li>
+//                             </ul>
+
+//                         </div>
+                        
+//                         <div className="card_right__summary">
+//                             { props.show.summary ? <p>{props.show.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")} ...</p> : <p>No summary available.</p>}
+//                             <a>Details</a>
+//                         </div>
+//                         {/* <div className="card_right__button">
+//                             <a>Details</a>
+//                         </div> */}
+                        
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
 
 // class Show extends React.Component {
 //     constructor(props) {

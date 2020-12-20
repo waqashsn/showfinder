@@ -29,10 +29,10 @@ class Show extends React.Component{
                         </ul>
                         <div className="card_right__extradetails">
                             <ul>
-                                <li>
+                                <li key="premiered">
                                     Premiered: {this.props.show.premiered}
                                 </li>
-                                <li>
+                                <li key="status">
                                     Status: {this.props.show.status}
                                 </li>
                             </ul>

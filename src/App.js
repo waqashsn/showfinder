@@ -14,7 +14,7 @@ class App extends React.Component {
       keyword: undefined,
       shows: [],
       error: undefined,
-      showmodal: undefined
+      showModal: undefined
       
     }
   }
@@ -38,10 +38,11 @@ class App extends React.Component {
   }
 
   handleDetails(showdata){
+    console.log(showdata);
     if(!!showdata){
       this.setState(()=> {
         return {
-          showmodal: showdata
+          showModal: showdata
         }
       })
     }
@@ -51,7 +52,7 @@ class App extends React.Component {
   handleCloseDetails(){
     this.setState(()=>{
       return {
-        showmodal: undefined
+        showModal: undefined
       }
     })
   }
@@ -87,7 +88,7 @@ class App extends React.Component {
       <div>
         <Search handleSearch={this.handleSearch} />
         {this.state.shows.length > 0 ? <SearchResults searchResults={this.state.shows} handleDetails={this.handleDetails} /> : <p>No</p>}
-        <ShowModal ShowModal={this.state.showmodal} handleCloseDetails={this.handleCloseDetails} />
+        <ShowModal ShowModal={this.state.showModal} handleCloseDetails={this.handleCloseDetails} />
       </div>
     )
     // if (this.state.error) {

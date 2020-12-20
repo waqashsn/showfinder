@@ -33,6 +33,7 @@ const ShowModal = (props) => {
             <div></div>
         )
     } else {
+        const imdbSummaryLink = `http://www.imdb.com/title/${props.ShowModal.externals.imdb}/plotsummary` || 'http://www.imdb.com';
         return (
         
             <div>
@@ -53,7 +54,7 @@ const ShowModal = (props) => {
                             
                             <div className='largecard_right__review'>
                                 <p>{props.ShowModal.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")}</p>
-                                <a href='http://www.imdb.com/title/tt0266697/plotsummary?ref_=tt_stry_pl' target='_blank'>Read more</a>
+                                <a href={imdbSummaryLink} target='_blank'>Read more</a>
                             </div>
                             <div>
                                 {/* <p>Genres:</p> */}

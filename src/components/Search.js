@@ -2,6 +2,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getShowsAsync } from '../actions/showsActions';
 
+const Search = (props) => {
+    return (
+        <div className="input-wrapper">
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                props.dispatch(getShowsAsync(e.target.elements.search_keyword.value.trim()))
+            }}>
+                <input type="text" placeholder="Search..." name="search_keyword" />
+                {/* <button>Search</button> */}
+            </form>
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return {
+        keyword: state.keyword
+    }
+}
+
+export default connect(mapStateToProps)(Search);
+
 // class Search extends React.Component {
 //     constructor(props) {
 //         super(props);
@@ -28,27 +50,6 @@ import { getShowsAsync } from '../actions/showsActions';
 
 // }
 
-const Search = (props) => {
-    return (
-        <div className="input-wrapper">
-            <form onSubmit={(e) => {
-                e.preventDefault();
-                props.dispatch(getShowsAsync(e.target.elements.search_keyword.value.trim()))
-            }}>
-                <input type="text" placeholder="Search..." name="search_keyword" />
-                {/* <button>Search</button> */}
-            </form>
-        </div>
-    );
-}
-
-const mapStateToProps = (state) => {
-    return {
-        keyword: state.keyword
-    }
-}
-
-export default connect(mapStateToProps)(Search);
 
 // const Search = (props) => {
 //     return (

@@ -1,5 +1,6 @@
 import Show from './Show';
 import { connect } from 'react-redux';
+import { displayShow, closeShow } from '../actions/showsActions';
 
 const SearchResults = (props) => {
     console.log(props.searchResults)
@@ -8,7 +9,8 @@ const SearchResults = (props) => {
             {
                 props.searchResults.map((result, index) => {
                     {/* return <p>{result.show.name}</p> */ }
-                    return <Show key={index} show={result.show} handleDetails={() => console.log(result.show.name)} handleCloseDetails={props.handleCloseDetails} />
+                    return <Show key={index} show={result.show} />
+                    {/* return <Show key={index} show={result.show} handleDetails={() => props.dispatch(displayShow(result.show))} handleCloseDetails={props.dispatch(closeShow())} /> */ }
                 })
             }
         </div>

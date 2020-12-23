@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
+import { closeShow } from '../actions/showsActions';
 
 const ShowModal = (props) => {
 
@@ -28,43 +30,43 @@ const ShowModal = (props) => {
         textDecoration: 'none',
     }
 
-    if (!props.ShowModal) {
+    if (!props.currentShow) {
         return (
             <div></div>
         )
     } else {
-        const imdbSummaryLink = `http://www.imdb.com/title/${props.ShowModal.externals.imdb}/plotsummary` || 'http://www.imdb.com';
+        const imdbSummaryLink = `http://www.imdb.com/title/${props.currentShow.externals.imdb}/plotsummary` || 'http://www.imdb.com';
         return (
 
             <div>
-                <Modal style={modalStyles} ariaHideApp={false} isOpen={!!props.ShowModal} onRequestClose={props.handleCloseDetails} contentLabel="Selected Show">
+                <Modal style={modalStyles} ariaHideApp={false} isOpen={!!props.currentShow} onRequestClose={props.dispatch(closeShow())} contentLabel="Selected Show">
                     <div className='largecard'>
                         <div className='largecard_left'>
-                            <img src={props.ShowModal.image.original} />
+                            <img src={props.currentShow.image.original} />
                         </div>
                         <div className='largecard_right'>
-                            <a href="#" onClick={props.handleCloseDetails} style={closeButtonStyles}>X</a>
-                            <h1>{props.ShowModal.name}</h1>
+                            <a href="#" onClick={props.dispatch(closeShow())} style={closeButtonStyles}>X</a>
+                            <h1>{props.currentShow.name}</h1>
                             <div className='largecard_right__details'>
                                 <ul>
-                                    <li key="premiered">Premiered: {props.ShowModal.premiered}</li>
-                                    <li key="runtime">{props.ShowModal.runtime} min</li>
-                                    <li key="status">{props.ShowModal.status}</li>
+                                    <li key="premiered">Premiered: {props.currentShow.premiered}</li>
+                                    <li key="runtime">{props.currentShow.runtime} min</li>
+                                    <li key="status">{props.currentShow.status}</li>
                                 </ul>
 
                                 <div className='largecard_right__review'>
-                                    <p>{props.ShowModal.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")}</p>
+                                    <p>{props.currentShow.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")}</p>
                                     <a href={imdbSummaryLink} target='_blank'>Read more</a>
                                 </div>
                                 <div>
                                     {/* <p>Genres:</p> */}
                                     <ul>
-                                        {props.ShowModal.genres.map((genre) => <li key={genre}>{genre}</li>)}
+                                        {props.currentShow.genres.map((genre) => <li key={genre}>{genre}</li>)}
                                     </ul>
                                 </div>
                                 <div className='largecard_right__button'>
-                                    {!!props.ShowModal.officialSite ? <a href={props.ShowModal.officialSite} target='_blank'>Official Website</a> : <span></span>}
-                                    <a href={props.ShowModal.url} target='_blank'>Full Details</a>
+                                    {!!props.currentShow.officialSite ? <a href={props.currentShow.officialSite} target='_blank'>Official Website</a> : <span></span>}
+                                    <a href={props.currentShow.url} target='_blank'>Full Details</a>
                                 </div>
                             </div>
                         </div>
@@ -78,4 +80,10 @@ const ShowModal = (props) => {
 
 }
 
-export default ShowModal;
+const mapStateToProps = (state) => {
+    return {
+        currentShow: state.showModal
+    }
+}
+
+export default connect(mapStateToProps)(ShowModal);

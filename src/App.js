@@ -11,6 +11,7 @@ const App = (props) => {
       <Search />
       {/* <SearchResults /> */}
       {props.shows.length > 0 ? <SearchResults /> : <p>No</p>}
+      <ShowModal />
       {/* <ShowModal ShowModal={this.state.showModal} handleCloseDetails={this.handleCloseDetails} /> */}
     </div>
   )

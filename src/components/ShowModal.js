@@ -55,7 +55,7 @@ const ShowModal = (props) => {
                                 </ul>
 
                                 <div className='largecard_right__review'>
-                                    <p>{props.currentShow.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")}</p>
+                                    {props.currentShow.summary ? <p>{props.currentShow.summary.replace(/<\/?[^>]+(>|$)/g, "")}</p> : <p>No summary availabe.</p>}
                                     <a href={imdbSummaryLink} target='_blank'>Read more</a>
                                 </div>
                                 <div>

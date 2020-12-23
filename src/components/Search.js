@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getShowsAsync } from '../actions/showsActions';
+import { getShowsAsync, setLoading } from '../actions/showsActions';
 
 const Search = (props) => {
     return (
         <div className="input-wrapper">
             <form onSubmit={(e) => {
                 e.preventDefault();
+                props.dispatch(setLoading(true))
                 props.dispatch(getShowsAsync(e.target.elements.search_keyword.value.trim()))
             }}>
                 <input type="text" placeholder="Search..." name="search_keyword" />

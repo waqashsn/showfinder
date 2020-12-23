@@ -15,7 +15,8 @@ export const showsReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 keyword: action.keyword,
-                shows: action.shows
+                shows: action.shows,
+                loading: false
             }
         case "DISPLAY_SHOW":
             return {
@@ -30,6 +31,7 @@ export const showsReducer = (state = defaultState, action) => {
         case "SET_LOADING":
             return {
                 ...state,
+                shows: [],
                 loading: action.loading
             }
         case "SET_ERROR":

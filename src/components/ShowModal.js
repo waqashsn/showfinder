@@ -39,13 +39,13 @@ const ShowModal = (props) => {
         return (
 
             <div>
-                <Modal style={modalStyles} ariaHideApp={false} isOpen={!!props.currentShow} onRequestClose={props.dispatch(closeShow())} contentLabel="Selected Show">
+                <Modal style={modalStyles} ariaHideApp={false} isOpen={!!props.currentShow} onRequestClose={() => props.dispatch(closeShow())} contentLabel="Selected Show">
                     <div className='largecard'>
                         <div className='largecard_left'>
                             <img src={props.currentShow.image.original} />
                         </div>
                         <div className='largecard_right'>
-                            <a href="#" onClick={props.dispatch(closeShow())} style={closeButtonStyles}>X</a>
+                            <a href="#" onClick={() => props.dispatch(closeShow())} style={closeButtonStyles}>X</a>
                             <h1>{props.currentShow.name}</h1>
                             <div className='largecard_right__details'>
                                 <ul>

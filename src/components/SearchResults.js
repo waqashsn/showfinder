@@ -1,6 +1,5 @@
 import Show from './Show';
 import { connect } from 'react-redux';
-import { displayShow, closeShow } from '../actions/showsActions';
 
 const SearchResults = (props) => {
     console.log(props.searchResults)

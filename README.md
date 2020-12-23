@@ -1,6 +1,6 @@
 # ShowFinder
 
-Built with [React](https://github.com/facebook/create-react-app), [TVmaze REST API](https://www.tvmaze.com/api) and [GitHub Pages](https://pages.github.com/).
+Built with [React](https://github.com/facebook/create-react-app), [Redux](https://redux.js.org/),[TVmaze REST API](https://www.tvmaze.com/api) and [GitHub Pages](https://pages.github.com/).
 
 ## How to use?
 

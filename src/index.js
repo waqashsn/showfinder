@@ -6,12 +6,12 @@ import { Provider } from 'react-redux';
 // import Show from './components/Show'
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from './store/configureStore';
-import { getShowsAsync, displayShow, closeShow, setError } from './actions/showsActions';
-
+// import { getShowsAsync, displayShow, closeShow, setError } from './actions/showsActions';
 const store = configureStore();
 store.subscribe(() => {
   console.log(store.getState());
 })
+
 
 ReactDOM.render(
   <React.StrictMode>

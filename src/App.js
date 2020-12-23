@@ -3,113 +3,133 @@ import Search from './components/Search';
 import Show from './components/Show';
 import SearchResults from './components/SearchResults';
 import ShowModal from './components/ShowModal';
+import { connect } from 'react-redux';
 
-class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleDetails = this.handleDetails.bind(this);
-    this.handleCloseDetails = this.handleCloseDetails.bind(this);
-    this.state = {
-      keyword: undefined,
-      shows: [],
-      error: undefined,
-      showModal: undefined
-      
-    }
-  }
-
-  handleSearch(searchKeyword) {
-    const apiUrl = 'https://api.tvmaze.com/search/shows?q=' + encodeURI(searchKeyword);
-    fetch(apiUrl)
-    .then((response) => response.json())
-    .then((searchResults) => {
-      if(searchResults.length > 0){
-        console.log("Keyword: ", searchKeyword);
-        console.log(searchResults);
-        this.setState(() => {
-          return {
-              keyword: searchKeyword,
-              shows: searchResults
-            }
-        })
-      }
-    }) 
-  }
-
-  handleDetails(showdata){
-    console.log(showdata);
-    if(!!showdata){
-      this.setState(()=> {
-        return {
-          showModal: showdata
-        }
-      })
-    }
-
-  }
-
-  handleCloseDetails(){
-    this.setState(()=>{
-      return {
-        showModal: undefined
-      }
-    })
-  }
-
-
-  // componentDidMount() {
-  //   const apiUrl = 'http://api.tvmaze.com/search/shows?q=' + encodeURI(this.state.keyword);
-  //   fetch(apiUrl)
-  //   .then((response )=> response.json())
-  //   .then((searchResults) =>  {
-  //     if(searchResults.length > 0){
-  //       this.setState(() => {
-  //           console.log("KEYWORD: ", encodeURI(this.state.keyword));
-  //           console.log(searchResults);
-  //           return {
-  //             shows: searchResults
-  //           }
-  //       })
-
-  //     } else {
-  //       this.setState(() => {
-  //         return {
-  //           error: "No movies found with that keyword"
-  //         }
-  //       })
-  //     }
-        
-  //   }); 
-  // }
-
-  render() {
-    return (
-      <div>
-        <Search handleSearch={this.handleSearch} />
-        {this.state.shows.length > 0 ? <SearchResults searchResults={this.state.shows} handleDetails={this.handleDetails} /> : <p>No</p>}
-        <ShowModal ShowModal={this.state.showModal} handleCloseDetails={this.handleCloseDetails} />
-      </div>
-    )
-    // if (this.state.error) {
-    //   return (
-    //     <p>Error: No movies found</p>
-    //   )
-    // } else {
-    //   return (
-    //     <div>
-    //       {this.state.shows.length > 0 && this.state.shows.map((showObj) => <p>{showObj.show.name}</p>)}
-    //     </div>
-    //   );
-    // }
-  }
-
+const App = (props) => {
+  return (
+    <div>
+      <Search />
+      {/* <SearchResults /> */}
+      {props.shows.length > 0 ? <SearchResults /> : <p>No</p>}
+      {/* <ShowModal ShowModal={this.state.showModal} handleCloseDetails={this.handleCloseDetails} /> */}
+    </div>
+  )
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return state
+}
+
+export default connect(mapStateToProps)(App);
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.handleSearch = this.handleSearch.bind(this);
+//     this.handleDetails = this.handleDetails.bind(this);
+//     this.handleCloseDetails = this.handleCloseDetails.bind(this);
+//     this.state = {
+//       keyword: undefined,
+//       shows: [],
+//       error: undefined,
+//       showModal: undefined
+
+//     }
+//   }
+
+//   handleSearch(searchKeyword) {
+//     const apiUrl = 'https://api.tvmaze.com/search/shows?q=' + encodeURI(searchKeyword);
+//     fetch(apiUrl)
+//       .then((response) => response.json())
+//       .then((searchResults) => {
+//         if (searchResults.length > 0) {
+//           console.log("Keyword: ", searchKeyword);
+//           console.log(searchResults);
+//           this.setState(() => {
+//             return {
+//               keyword: searchKeyword,
+//               shows: searchResults
+//             }
+//           })
+//         }
+//       })
+//   }
+
+//   handleDetails(showdata) {
+//     console.log(showdata);
+//     if (!!showdata) {
+//       this.setState(() => {
+//         return {
+//           showModal: showdata
+//         }
+//       })
+//     }
+
+//   }
+
+//   handleCloseDetails() {
+//     this.setState(() => {
+//       return {
+//         showModal: undefined
+//       }
+//     })
+//   }
+
+
+//   // componentDidMount() {
+//   //   const apiUrl = 'http://api.tvmaze.com/search/shows?q=' + encodeURI(this.state.keyword);
+//   //   fetch(apiUrl)
+//   //   .then((response )=> response.json())
+//   //   .then((searchResults) =>  {
+//   //     if(searchResults.length > 0){
+//   //       this.setState(() => {
+//   //           console.log("KEYWORD: ", encodeURI(this.state.keyword));
+//   //           console.log(searchResults);
+//   //           return {
+//   //             shows: searchResults
+//   //           }
+//   //       })
+
+//   //     } else {
+//   //       this.setState(() => {
+//   //         return {
+//   //           error: "No movies found with that keyword"
+//   //         }
+//   //       })
+//   //     }
+
+//   //   }); 
+//   // }
+
+//   render() {
+//     // const state = store.getState()
+//     // console.log(state.shows.length)
+//     return (
+//       <div>
+//         <Search />
+//         <SearchResults />
+//         {/* {state.shows.length > 0 ? <SearchResults /> : <p>No</p>} */}
+//         <ShowModal ShowModal={this.state.showModal} handleCloseDetails={this.handleCloseDetails} />
+//       </div>
+//     )
+//     // if (this.state.error) {
+//     //   return (
+//     //     <p>Error: No movies found</p>
+//     //   )
+//     // } else {
+//     //   return (
+//     //     <div>
+//     //       {this.state.shows.length > 0 && this.state.shows.map((showObj) => <p>{showObj.show.name}</p>)}
+//     //     </div>
+//     //   );
+//     // }
+//   }
+
+// }
+
+// export default App;
 
 // class Counter extends React.Component {
-  
+
 //   constructor(props) {
 //     super(props);
 //     this.handleReset = this.handleReset.bind(this);

@@ -35,7 +35,7 @@ const ShowModal = (props) => {
             <div></div>
         )
     } else {
-        const imdbSummaryLink = `http://www.imdb.com/title/${props.currentShow.externals.imdb}/plotsummary` || 'http://www.imdb.com';
+        const imdbSummaryLink = `` || 'http://www.imdb.com';
         return (
 
             <div>
@@ -56,7 +56,7 @@ const ShowModal = (props) => {
 
                                 <div className='largecard_right__review'>
                                     {props.currentShow.summary ? <p>{props.currentShow.summary.replace(/<\/?[^>]+(>|$)/g, "")}</p> : <p>No summary availabe.</p>}
-                                    <a href={imdbSummaryLink} target='_blank'>Read more</a>
+                                    {props.currentShow.externals.imdb && <a href={`http://www.imdb.com/title/${props.currentShow.externals.imdb}/plotsummary`} target='_blank'>Read more</a>}
                                 </div>
                                 <div>
                                     {/* <p>Genres:</p> */}

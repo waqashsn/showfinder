@@ -10,10 +10,10 @@
   -moz-osx-font-smoothing: grayscale;
 } */
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
+} */
 
 body {
   background: #222222;
@@ -36,6 +36,17 @@ body .card {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.55);
+  border-color: #141414;
+  border-width: 0.5px;
+  border-style: solid;
+  transition: transform 0.4s, box-shadow 1s, border 0.4s;
+}
+body .card:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 20px 3px rgba(184, 184, 184, 0.55);
+  border-color: rgba(184, 184, 184, 0.55);
+  border-width: 0.5px;
+  border-style: solid;
 }
 body .card_left {
   width: 35%;
@@ -286,6 +297,7 @@ body .largecard_right {
   border-radius: 0 10px 10px 0;
   -webkit-border-radius: 0 10px 10px 0;
   -moz-border-radius: 0 10px 10px 0;
+  overflow-y: scroll;
 }
 body .largecard_right h1 {
   color: white;

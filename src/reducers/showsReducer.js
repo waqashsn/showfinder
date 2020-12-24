@@ -37,7 +37,8 @@ export const showsReducer = (state = defaultState, action) => {
         case "SET_ERROR":
             return {
                 ...state,
-                error: action.error
+                error: action.error,
+                loading: false
             }
         default:
             return state

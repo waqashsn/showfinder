@@ -12,9 +12,13 @@ export const getShowsAsync = (searchKeyword) => {
                     dispatch(getShows(searchKeyword, searchResults));
                     // dispatch(setLoading(false));
                 } else {
-                    dispatch(setError("Error: Couldn't get data."))
+                    dispatch(setError("Now shows found. Try another keyword."))
                     // dispatch(setLoading(false));
                 }
+            })
+            .catch((err) => {
+                dispatch(setError("Couldn't fetch search resluts. Check network connection."))
+                console.log("ERROR: ", err);
             })
     }
 }

@@ -420,3 +420,11 @@ body .largecard_right__button a:hover {
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
 }
+
+body .errorMsg {
+  text-align: center;
+  color: #777777;
+  font-family: "Montserrat", sans-serif;
+  /* font-weight: 400; */
+  font-size: 18px;
+}

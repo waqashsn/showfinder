@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from './components/Search';
-import Show from './components/Show';
 import SearchResults from './components/SearchResults';
+import Error from './components/Error';
 import ShowModal from './components/ShowModal';
 import { connect } from 'react-redux';
 import MoonLoader from 'react-spinners/MoonLoader';
@@ -13,7 +13,8 @@ const App = (props) => {
       {/* <SearchResults /> */}
       {props.loading && <MoonLoader size={80} color={"#FFFFFF"} css={"margin:0; position: absolute; top: 50%; left:45%;"} />}
       {/* {props.shows.length > 0 ? <SearchResults /> : <p>No</p>} */}
-      {props.shows.length > 0 && <SearchResults />}
+      {/* {props.shows.length > 0 && <SearchResults />} */}
+      {!!props.error ? <Error /> : <SearchResults />}
       <ShowModal />
       {/* <ShowModal ShowModal={this.state.showModal} handleCloseDetails={this.handleCloseDetails} /> */}
     </div>

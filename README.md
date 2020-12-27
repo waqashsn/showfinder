@@ -8,4 +8,4 @@ Visit the web app at [http://waqashsn.github.io/showfinder](http://waqashsn.gith
 
 ## Credits
 
-Design inspiration from different sources (to be added later).
+Design inspirations from [here](https://codepen.io/rmcdonalddesigns/pen/QjLrNe?editors=1100).

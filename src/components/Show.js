@@ -31,7 +31,7 @@ const Show = (props) => {
 
                         <div className="card_right__summary">
                             {props.show.summary ? <p>{props.show.summary.substr(0, 220).replace(/<\/?[^>]+(>|$)/g, "")} ...</p> : <p>No summary available.</p>}
-                            <a href="#" onClick={() => props.dispatch(displayShow(props.show))}>Details</a>
+                            <a href="#0" onClick={() => props.dispatch(displayShow(props.show))}>Details</a>
                         </div>
                         {/* <div className="card_right__button">
                             <a>Details</a>

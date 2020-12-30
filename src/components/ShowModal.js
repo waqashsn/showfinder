@@ -27,7 +27,7 @@ const ShowModal = (props) => {
         float: 'right',
         padding: '10px',
         fontFamily: 'sans-serif',
-        textDecoration: 'none',
+        textDecoration: 'none'
     }
 
     if (!props.currentShow) {
@@ -44,7 +44,7 @@ const ShowModal = (props) => {
                             <img alt="show_poster" src={props.currentShow.image.original} />
                         </div>
                         <div className='largecard_right'>
-                            <button onClick={() => props.dispatch(closeShow())} style={closeButtonStyles}>X</button>
+                            <a href="#0" onClick={() => props.dispatch(closeShow())} style={closeButtonStyles}>X</a>
                             <h1>{props.currentShow.name}</h1>
                             <div className='largecard_right__details'>
                                 <ul>

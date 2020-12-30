@@ -41,7 +41,8 @@ const ShowModal = (props) => {
                 <Modal style={modalStyles} ariaHideApp={false} isOpen={!!props.currentShow} onRequestClose={() => props.dispatch(closeShow())} contentLabel="Selected Show">
                     <div className='largecard'>
                         <div className='largecard_left'>
-                            <img alt="show_poster" src={props.currentShow.image.original} />
+                            {!!props.currentShow.image && <img alt="show_poster" src={props.currentShow.image.original} />}
+                            {/* <img alt="show_poster" src={props.currentShow.image.original} /> */}
                         </div>
                         <div className='largecard_right'>
                             <a href="#0" onClick={() => props.dispatch(closeShow())} style={closeButtonStyles}>X</a>

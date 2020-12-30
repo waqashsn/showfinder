@@ -10,7 +10,7 @@ const Search = (props) => {
                 props.dispatch(setLoading(true))
                 props.dispatch(getShowsAsync(e.target.elements.search_keyword.value.trim()))
             }}>
-                <input type="text" placeholder="Search..." name="search_keyword" />
+                <input type="text" placeholder="Search shows..." name="search_keyword" />
                 {/* <button>Search</button> */}
             </form>
         </div>

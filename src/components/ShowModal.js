@@ -35,17 +35,16 @@ const ShowModal = (props) => {
             <div></div>
         )
     } else {
-        const imdbSummaryLink = `` || 'http://www.imdb.com';
         return (
 
             <div>
                 <Modal style={modalStyles} ariaHideApp={false} isOpen={!!props.currentShow} onRequestClose={() => props.dispatch(closeShow())} contentLabel="Selected Show">
                     <div className='largecard'>
                         <div className='largecard_left'>
-                            <img src={props.currentShow.image.original} />
+                            <img alt="show_poster" src={props.currentShow.image.original} />
                         </div>
                         <div className='largecard_right'>
-                            <a href="#" onClick={() => props.dispatch(closeShow())} style={closeButtonStyles}>X</a>
+                            <button onClick={() => props.dispatch(closeShow())} style={closeButtonStyles}>X</button>
                             <h1>{props.currentShow.name}</h1>
                             <div className='largecard_right__details'>
                                 <ul>
@@ -56,7 +55,7 @@ const ShowModal = (props) => {
 
                                 <div className='largecard_right__review'>
                                     {props.currentShow.summary ? <p>{props.currentShow.summary.replace(/<\/?[^>]+(>|$)/g, "")}</p> : <p>No summary availabe.</p>}
-                                    {props.currentShow.externals.imdb && <a href={`http://www.imdb.com/title/${props.currentShow.externals.imdb}/plotsummary`} target='_blank'>Read more</a>}
+                                    {props.currentShow.externals.imdb && <a href={`http://www.imdb.com/title/${props.currentShow.externals.imdb}/plotsummary`} target='_blank' rel="noreferrer">Read more</a>}
                                 </div>
                                 <div>
                                     {/* <p>Genres:</p> */}
@@ -65,8 +64,8 @@ const ShowModal = (props) => {
                                     </ul>
                                 </div>
                                 <div className='largecard_right__button'>
-                                    {!!props.currentShow.officialSite ? <a href={props.currentShow.officialSite} target='_blank'>Official Website</a> : <span></span>}
-                                    <a href={props.currentShow.url} target='_blank'>Full Details</a>
+                                    {!!props.currentShow.officialSite ? <a href={props.currentShow.officialSite} target='_blank' rel="noreferrer">Official Website</a> : <span></span>}
+                                    <a href={props.currentShow.url} target='_blank' rel="noreferrer">Full Details</a>
                                 </div>
                             </div>
                         </div>
